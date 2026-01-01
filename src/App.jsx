@@ -64,12 +64,12 @@ const SUSPECTS = {
   },
   edwin: {
     name: 'Edwin',
-    image: 'Edwin.jpg',
+    image: 'Edwin.png',
     traits: ['lloron', 'ejercicio', 'hombre', 'adulto', 'religioso', 'calvo', 'cafe', 'picante']
   },
   jambita: {
     name: 'Jambita',
-    image: 'Jambita.jpg',
+    image: 'Jambita.png',
     traits: ['gafas', 'lloron', 'ejercicio', 'hombre', 'adulto', 'videojuegos', 'calvo', 'cafe', 'picante']
   },
   eli: {
@@ -79,17 +79,17 @@ const SUSPECTS = {
   },
   magda: {
     name: 'Magda',
-    image: 'Magda.jpg',
+    image: 'Magda.png',
     traits: ['adulto', 'religioso', 'fashionista', 'cafe', 'picante']
   },
   aide: {
     name: 'Aide',
-    image: 'Aide.jpg',
+    image: 'Aide.png',
     traits: ['pelo_lacio', 'adulto', 'religioso', 'fashionista', 'cafe', 'picante']
   },
   yuli: {
     name: 'Yuli',
-    image: 'Yuli.jpg',
+    image: 'Yuli.png',
     traits: ['pelo_lacio', 'adulto']
   },
   johan: {

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Yo No Fui! - Instrucciones</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --terracotta: #C45C3E;
+            --teal: #2A7B7B;
+            --cream: #FFF8E7;
+            --dark-brown: #3D2314;
+            --light-teal: #E8F5F5;
+            --success-green: #2E7D32;
+            --success-bg: #E8F5E9;
+            --error-red: #C62828;
+            --error-bg: #FFEBEE;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--cream);
+            color: var(--dark-brown);
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: var(--terracotta);
+            font-weight: 800;
+            text-shadow: 2px 2px 0 #fff;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: var(--dark-brown);
+            font-size: 0.95rem;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            background: var(--teal);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-header .icon {
+            font-size: 1.3rem;
+        }
+        
+        .content {
+            padding: 0 10px;
+        }
+        
+        .story-box {
+            background: white;
+            border-left: 4px solid var(--terracotta);
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 10px;
+        }
+        
+        .story-box p {
+            margin-bottom: 8px;
+        }
+        
+        .story-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight {
+            color: var(--terracotta);
+            font-weight: 700;
+        }
+        
+        .teal {
+            color: var(--teal);
+            font-weight: 700;
+        }
+        
+        ol, ul {
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 6px;
+        }
+        
+        .components-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .component-box {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .component-box h4 {
+            color: var(--teal);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .component-box p {
+            font-size: 0.85rem;
+        }
+        
+        .pets-list {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .step-title {
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 12px 0 6px 0;
+        }
+        
+        .step-title span {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--dark-brown);
+        }
+        
+        .dice-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .dice-option {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            text-align: center;
+        }
+        
+        .dice-option strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .result-box {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .result-header {
+            padding: 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .result-header small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.8rem;
+        }
+        
+        .success .result-header {
+            background: var(--success-bg);
+            color: var(--success-green);
+        }
+        
+        .fail .result-header {
+            background: var(--error-bg);
+            color: var(--error-red);
+        }
+        
+        .result-content {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-top: none;
+            font-size: 0.9rem;
+        }
+        
+        .result-content h5 {
+            color: var(--dark-brown);
+            margin-bottom: 5px;
+        }
+        
+        .result-content ul {
+            margin-left: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .result-content li {
+            margin-bottom: 3px;
+        }
+        
+        .app-action {
+            background: var(--light-teal);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: var(--teal);
+            display: inline-block;
+            margin: 3px 0;
+        }
+        
+        .fail-action {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .fail-action strong {
+            color: var(--terracotta);
+            font-size: 1.1rem;
+        }
+        
+        .end-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .end-box {
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .end-box.victory {
+            background: var(--success-bg);
+            border: 2px solid var(--success-green);
+        }
+        
+        .end-box.victory h4 {
+            color: var(--success-green);
+        }
+        
+        .end-box.defeat {
+            background: var(--error-bg);
+            border: 2px solid var(--error-red);
+        }
+        
+        .end-box.defeat h4 {
+            color: var(--error-red);
+        }
+        
+        .end-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .end-box ul {
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        
+        .warning-box {
+            background: #FFF3E0;
+            border: 2px solid #FF9800;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .warning-box strong {
+            color: #E65100;
+        }
+        
+        .difficulty-bar {
+            background: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            border: 1px solid #ddd;
+        }
+        
+        .difficulty-bar strong {
+            color: var(--teal);
+        }
+        
+        .app-footer {
+            background: var(--teal);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .app-footer a {
+            color: var(--cream);
+            font-weight: 700;
+        }
+        
+        .app-functions {
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        
+        @media print {
+            body {
+                padding: 10px;
+                font-size: 11pt;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                margin-bottom: 12px;
+            }
+            
+            .section-header {
+                padding: 5px 10px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .components-grid,
+            .dice-options,
+            .results-grid,
+            .end-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>¡YO NO FUI!</h1>
+        <p class="subtitle">Un juego cooperativo de detectives familiares • 4-10 jugadores • 15-25 min • Edad 5+</p>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="icon">🎯</span> LA HISTORIA
+        </div>
+        <div class="content">
+            <div class="story-box">
+                <p>Algo pasó en la casa de <strong>Nes</strong>: se perdieron las joyas, se rompieron las porcelanas, alguien se comió el postre, las cosas no están en su puesto... <em>¿Quién fue?</em></p>
+                <p>Todos los miembros de la familia dicen <span class="highlight">"¡Yo no fui!"</span></p>
+                <p>Cuando nadie confesaba, Nes siempre le echaba la culpa al misterioso <span class="highlight">Padre Mejía</span>... ¡y ahora él quiere escapar con el secreto!</p>
+                <p><strong>Objetivo:</strong> Trabajen juntos para descubrir <span class="teal">quién de la familia fue el culpable</span> antes de que el Padre Mejía escape.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="icon">📦</span> COMPONENTES
+        </div>
+        <div class="content">
+            <div class="components-grid">
+                <div class="component-box">
+                    <h4>🔍 14 Cartas de Sospechosos</h4>
+                    <p>Los miembros de la familia</p>
+                </div>
+                <div class="component-box">
+                    <h4>🐾 11 Fichas de Detective</h4>
+                    <p>Las mascotas de la familia</p>
+                    <p class="pets-list">🐕 Mafalda, Ana María, Susy, Gift, Pecas, Simona<br>
+                    🐱 Gabriel, Michu, Maya, Lorenzo<br>
+                    🦜 Vicentico</p>
+                </div>
+                <div class="component-box">
+                    <h4>🎲 3 Dados</h4>
+                    <p>Con huellas 👣 y ojos 👁️</p>
+                </div>
+                <div class="component-box">
+                    <h4>📱 App "¡Yo No Fui!"</h4>
+                    <p><a href="http://johnguerra.co/viz/YoNoFui" target="_blank">johnguerra.co/viz/YoNoFui</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="icon">📋</span> PREPARACIÓN
+        </div>
+        <div class="content">
+            <ol>
+                <li>Coloquen el <strong>tablero</strong> en el centro y las <strong>14 cartas de sospechosos</strong> boca abajo alrededor.</li>
+                <li>Volteen <strong>2 sospechosos</strong> al azar para empezar.</li>
+                <li>Abran la <span class="teal">App "¡Yo No Fui!"</span> y presionen "Nueva Partida" — la app selecciona el culpable secreto.</li>
+                <li>Coloquen al <span class="highlight">Padre Mejía</span> en la casilla 1 del camino numerado.</li>
+                <li>Cada jugador elige una <strong>mascota detective</strong> y la coloca en el centro del tablero (las huellas).</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="icon">🎲</span> TURNO DE JUEGO
+        </div>
+        <div class="content">
+            <p class="step-title">PASO 1: Declarar acción <span>(ANTES de tirar los dados)</span></p>
+            <div class="dice-options">
+                <div class="dice-option">
+                    <strong>"¡Buscar pistas!"</strong>
+                    Necesitas 👣👣👣 (huellas)
+                </div>
+                <div class="dice-option">
+                    <strong>"¡Revelar sospechosos!"</strong>
+                    Necesitas 👁️👁️👁️ (ojos)
+                </div>
+            </div>
+
+            <p class="step-title">PASO 2: Tirar los 3 dados <span>(máximo 3 intentos)</span></p>
+            <p>Tira los dados. Aparta los que muestran tu símbolo. Vuelve a tirar los demás. Repite hasta tener los 3 correctos o agotar los 3 intentos.</p>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 5px;"><em>💡 Tip: Cada dado puede tener 1, 2 o 3 huellas. ¡Cuenta el total para saber cuántas casillas te mueves!</em></p>
+
+            <p class="step-title">PASO 3: Resultado</p>
+            <div class="results-grid">
+                <div class="result-box success">
+                    <div class="result-header">
+                        ✅ ÉXITO
+                        <small>(lograste los 3 dados)</small>
+                    </div>
+                    <div class="result-content">
+                        <h5>👣 Buscar Pistas:</h5>
+                        <ul>
+                            <li>Cuenta las huellas en <strong>todos</strong> los dados</li>
+                            <li>Mueve tu mascota <strong>hasta</strong> ese número de casillas (↑↓←→, no diagonal)</li>
+                            <li>Puedes moverte por cualquier casilla, incluyendo el camino del Padre Mejía</li>
+                            <li>Si ya estás en una 🔍, puedes salir por cualquier lado</li>
+                            <li>Si caes en una 🔍, usa la app:</li>
+                        </ul>
+                        <div class="app-action">App → "Buscar Pista" → SÍ/NO</div>
+                        <ul>
+                            <li><strong>SÍ:</strong> El culpable TIENE esa característica → eliminen a quienes NO la tengan</li>
+                            <li><strong>NO:</strong> El culpable NO tiene esa característica → eliminen a quienes SÍ la tengan</li>
+                        </ul>
+                        
+                        <h5>👁️ Revelar Sospechosos:</h5>
+                        <ul>
+                            <li>Voltea 2 cartas de sospechosos boca abajo</li>
+                            <li>Usen su <strong>memoria</strong> de las pistas anteriores</li>
+                            <li>Eliminen sospechosos que no coincidan con lo que ya saben</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="result-box fail">
+                    <div class="result-header">
+                        ❌ FALLO
+                        <small>(no lograste en 3 intentos)</small>
+                    </div>
+                    <div class="result-content fail-action">
+                        <strong>El Padre Mejía<br>avanza 3 casillas</strong>
+                        <p style="margin-top: 10px;">por el camino numerado hacia la salida</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="icon">🏆</span> FIN DEL JUEGO
+        </div>
+        <div class="content">
+            <div class="end-grid">
+                <div class="end-box victory">
+                    <h4>🎉 ¡VICTORIA!</h4>
+                    <ul>
+                        <li>Eliminan todos los sospechosos excepto 1</li>
+                        <li>O hacen una <strong>acusación correcta</strong>:</li>
+                    </ul>
+                    <div class="app-action" style="margin-top: 8px;">App → "¡Acusar!" → Verificar</div>
+                </div>
+                <div class="end-box defeat">
+                    <h4>😢 DERROTA</h4>
+                    <ul>
+                        <li>El Padre Mejía llega a la <strong>SALIDA</strong></li>
+                        <li>O hacen una <strong>acusación incorrecta</strong></li>
+                    </ul>
+                    <p style="margin-top: 8px; font-style: italic;">¡Se llevó el secreto para siempre!</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <strong>⚠️ ¡Cuidado!</strong> Si acusan al sospechoso equivocado, ¡pierden inmediatamente! El Padre Mejía escapa con el secreto. Asegúrense antes de acusar.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="icon">⚙️</span> DIFICULTAD
+        </div>
+        <div class="content">
+            <div class="difficulty-bar">
+                <strong>Padre Mejía avanza:</strong>
+                <span>Fácil (2)</span> •
+                <span>Normal (3)</span> •
+                <span>Difícil (4)</span> •
+                <span>Experto (5)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-footer">
+        <strong>📱 USA LA APP "¡YO NO FUI!"</strong><br>
+        <a href="http://johnguerra.co/viz/YoNoFui" target="_blank">johnguerra.co/viz/YoNoFui</a>
+        <div class="app-functions">
+            Nueva Partida • Buscar Pista (SÍ/NO) • ¡Acusar! • Ver Culpable
+        </div>
+    </div>
+</body>
+</html>

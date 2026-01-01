@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Yo No Fui! - Crea tus Dados</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Patrick+Hand&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto;
+            padding: 12mm;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        @media print {
+            body { background: white; }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 10mm;
+            }
+            .no-print { display: none !important; }
+        }
+        
+        .print-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            background: #C45C26;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .print-btn:hover { background: #A34A1E; }
+        
+        h1 {
+            text-align: center;
+            color: #C45C26;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        /* Mission box */
+        .mission-box {
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFF3D6 100%);
+            border: 3px solid #C45C26;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .mission-box::before {
+            content: "🎯";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+            background: white;
+            padding: 0 10px;
+        }
+        
+        .mission-box h2 {
+            color: #C45C26;
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+        
+        .mission-box p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Rules section */
+        .rules-section {
+            background: #f0f7fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .rules-section h2 {
+            color: #2A7B9B;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rule-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #2A7B9B;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .rule-number {
+            background: #2A7B9B;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .rule-content {
+            flex: 1;
+        }
+        
+        .rule-content strong {
+            color: #C45C26;
+        }
+        
+        .icon-display {
+            font-size: 28px;
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        
+        /* Hint box */
+        .hint-box {
+            background: #E8F4F8;
+            border: 2px dashed #2A7B9B;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .hint-box h3 {
+            color: #2A7B9B;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .hint-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .hint-item {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .hint-item .big-icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Challenge section */
+        .challenge-section {
+            background: linear-gradient(135deg, #FEF3E7 0%, #FDEBD0 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #E67E22;
+        }
+        
+        .challenge-section h2 {
+            color: #E67E22;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .math-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .math-box .equation {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 22px;
+            color: #333;
+            margin: 10px 0;
+        }
+        
+        .blank {
+            display: inline-block;
+            width: 40px;
+            border-bottom: 2px solid #333;
+            margin: 0 5px;
+            text-align: center;
+        }
+        
+        /* Materials section */
+        .materials-section {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .materials-section h2 {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .material-item {
+            background: white;
+            border-radius: 8px;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 12px;
+            border: 1px solid #ddd;
+        }
+        
+        .material-item .icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* Draw section */
+        .draw-section {
+            margin-top: 20px;
+        }
+        
+        .draw-section h2 {
+            color: #C45C26;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .dice-template {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .dice-net {
+            display: grid;
+            grid-template-areas:
+                ".    top    .      ."
+                "left center right  far"
+                ".    bottom .      .";
+            gap: 0;
+        }
+        
+        .dice-face {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #333;
+            background: #FFFEF8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #ccc;
+        }
+        
+        .dice-face.top { grid-area: top; }
+        .dice-face.left { grid-area: left; }
+        .dice-face.center { grid-area: center; }
+        .dice-face.right { grid-area: right; }
+        .dice-face.far { grid-area: far; }
+        .dice-face.bottom { grid-area: bottom; }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 11px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        /* Fun facts */
+        .fun-fact {
+            background: #F5E6FF;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .fun-fact .icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">🖨️ Imprimir Actividad</button>
+    
+    <div class="page">
+        <h1>🎲 ¡Crea los Dados del Juego! 🎲</h1>
+        <p class="subtitle">Una actividad de ¡Yo No Fui! para pequeños detectives</p>
+        
+        <!-- Mission -->
+        <div class="mission-box">
+            <h2>Tu Misión</h2>
+            <p>
+                Para jugar <strong>¡Yo No Fui!</strong> necesitamos <strong>3 dados especiales</strong>. 
+                Pero no son dados normales con números... ¡tienen huellas y ojos! 
+                Tu trabajo es descubrir cómo debe ser cada dado siguiendo las pistas.
+            </p>
+        </div>
+        
+        <!-- Rules -->
+        <div class="rules-section">
+            <h2>🔍 Las Reglas de los Dados</h2>
+            
+            <div class="rule-card">
+                <div class="rule-number">1</div>
+                <div class="rule-content">
+                    Un dado normal tiene <strong>6 caras</strong>. ¡Nuestros dados también!
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">2</div>
+                <div class="rule-content">
+                    <strong>3 caras</strong> tienen un <strong>OJO</strong> 👁️ (para revelar sospechosos)
+                    <div class="icon-display">👁️ 👁️ 👁️</div>
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">3</div>
+                <div class="rule-content">
+                    <strong>3 caras</strong> tienen <strong>HUELLAS</strong> 🐾 (para buscar pistas)
+                    <br>Pero... ¡no todas tienen la misma cantidad de huellas!
+                </div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">4</div>
+                <div class="rule-content">
+                    De las 3 caras con huellas:
+                    <br>• <strong>2 caras</strong> tienen <strong>1 huella</strong> cada una 🐾
+                    <br>• <strong>1 cara</strong> tiene <strong>2 huellas</strong> 🐾🐾
+                </div>
+            </div>
+        </div>
+        
+        <!-- Challenge -->
+        <div class="challenge-section">
+            <h2>🧮 ¡Desafío Matemático!</h2>
+            
+            <div class="math-box">
+                <p><strong>¿Cuántas huellas tiene cada dado en total?</strong></p>
+                <p class="equation">
+                    (2 caras × 1 huella) + (1 cara × 2 huellas) = <span class="blank"></span> huellas
+                </p>
+            </div>
+            
+            <div class="math-box">
+                <p><strong>Si sacas 3 huellas en los dados, ¿cuántas casillas puedes moverte?</strong></p>
+                <p class="equation">
+                    Mínimo: 1 + 1 + 1 = <span class="blank"></span> casillas
+                </p>
+                <p class="equation">
+                    Máximo: 2 + 2 + 2 = <span class="blank"></span> casillas
+                </p>
+            </div>
+        </div>
+        
+        <!-- Hint -->
+        <div class="hint-box">
+            <h3>💡 Pista Visual</h3>
+            <p>Así se ven las 6 caras de <strong>UN</strong> dado:</p>
+            <div class="hint-grid">
+                <div class="hint-item">
+                    <span class="big-icon">👁️</span>
+                    Cara 1
+                </div>
+                <div class="hint-item">
+                    <span class="big-icon">👁️</span>
+                    Cara 2
+                </div>
+                <div class="hint-item">
+                    <span class="big-icon">👁️</span>
+                    Cara 3
+                </div>
+                <div class="hint-item">
+                    <span class="big-icon">🐾</span>
+                    Cara 4
+                </div>
+                <div class="hint-item">
+                    <span class="big-icon">🐾</span>
+                    Cara 5
+                </div>
+                <div class="hint-item">
+                    <span class="big-icon">🐾🐾</span>
+                    Cara 6
+                </div>
+            </div>
+        </div>
+        
+        <!-- Materials -->
+        <div class="materials-section">
+            <h2>🛠️ Materiales para crear tus dados</h2>
+            <div class="materials-grid">
+                <div class="material-item">
+                    <span class="icon">📦</span>
+                    Cubos de madera o dados en blanco
+                </div>
+                <div class="material-item">
+                    <span class="icon">🖍️</span>
+                    Marcadores o pintura
+                </div>
+                <div class="material-item">
+                    <span class="icon">📄</span>
+                    Cartulina gruesa
+                </div>
+                <div class="material-item">
+                    <span class="icon">✂️</span>
+                    Tijeras y pegamento
+                </div>
+            </div>
+        </div>
+        
+        <!-- Draw template -->
+        <div class="draw-section">
+            <h2>✏️ Dibuja tu dado aquí</h2>
+            <p style="text-align: center; font-size: 13px; color: #666; margin-bottom: 10px;">
+                Dibuja los símbolos correctos en cada cara (recuerda: 3 ojos y 3 huellas)
+            </p>
+            <div class="dice-template">
+                <svg width="400" height="280" viewBox="0 0 400 280" style="display: block; margin: 0 auto;">
+                    <!-- Tabs (glue flaps) - 5 tabs in correct positions -->
+                    
+                    <!-- Tab 1: top of TOP face (x=125 to 195, so tab at ~140-180) -->
+                    <path d="M 140,25 L 145,8 L 175,8 L 180,25" fill="#f0f0f0" stroke="#999" stroke-width="1" stroke-dasharray="4,2"/>
+                    <text x="160" y="18" text-anchor="middle" font-size="7" fill="#999">pegar</text>
+                    
+                    <!-- Tab 2: left of LEFT face (x=55) -->
+                    <path d="M 55,110 L 38,115 L 38,150 L 55,155" fill="#f0f0f0" stroke="#999" stroke-width="1" stroke-dasharray="4,2"/>
+                    <text x="46" y="135" text-anchor="middle" font-size="7" fill="#999" transform="rotate(-90, 46, 135)">pegar</text>
+                    
+                    <!-- Tab 3: top of FAR-RIGHT face (x=265 to 335, connects to TOP when folded) -->
+                    <path d="M 280,95 L 285,78 L 315,78 L 320,95" fill="#f0f0f0" stroke="#999" stroke-width="1" stroke-dasharray="4,2"/>
+                    <text x="300" y="88" text-anchor="middle" font-size="7" fill="#999">pegar</text>
+                    
+                    <!-- Tab 4: right of FAR-RIGHT face (x=335) -->
+                    <path d="M 335,110 L 352,115 L 352,150 L 335,155" fill="#f0f0f0" stroke="#999" stroke-width="1" stroke-dasharray="4,2"/>
+                    <text x="344" y="135" text-anchor="middle" font-size="7" fill="#999" transform="rotate(90, 344, 135)">pegar</text>
+                    
+                    <!-- Tab 5: bottom of BOTTOM face (x=125 to 195, y=235) -->
+                    <path d="M 140,235 L 145,252 L 175,252 L 180,235" fill="#f0f0f0" stroke="#999" stroke-width="1" stroke-dasharray="4,2"/>
+                    <text x="160" y="247" text-anchor="middle" font-size="7" fill="#999">pegar</text>
+                    
+                    <!-- Faces -->
+                    <!-- TOP face -->
+                    <rect x="125" y="25" width="70" height="70" fill="#FFFEF8" stroke="#333" stroke-width="2"/>
+                    <text x="160" y="68" text-anchor="middle" font-size="11" fill="#ccc">dibuja</text>
+                    
+                    <!-- LEFT face -->
+                    <rect x="55" y="95" width="70" height="70" fill="#FFFEF8" stroke="#333" stroke-width="2"/>
+                    <text x="90" y="138" text-anchor="middle" font-size="11" fill="#ccc">dibuja</text>
+                    
+                    <!-- CENTER face (starts where LEFT ends: 55+70=125) -->
+                    <rect x="125" y="95" width="70" height="70" fill="#FFFEF8" stroke="#333" stroke-width="2"/>
+                    <text x="160" y="138" text-anchor="middle" font-size="11" fill="#ccc">dibuja</text>
+                    
+                    <!-- RIGHT face (starts where CENTER ends: 125+70=195) -->
+                    <rect x="195" y="95" width="70" height="70" fill="#FFFEF8" stroke="#333" stroke-width="2"/>
+                    <text x="230" y="138" text-anchor="middle" font-size="11" fill="#ccc">dibuja</text>
+                    
+                    <!-- FAR-RIGHT face (starts where RIGHT ends: 195+70=265) -->
+                    <rect x="265" y="95" width="70" height="70" fill="#FFFEF8" stroke="#333" stroke-width="2"/>
+                    <text x="300" y="138" text-anchor="middle" font-size="11" fill="#ccc">dibuja</text>
+                    
+                    <!-- BOTTOM face (aligned with CENTER: x=125) -->
+                    <rect x="125" y="165" width="70" height="70" fill="#FFFEF8" stroke="#333" stroke-width="2"/>
+                    <text x="160" y="208" text-anchor="middle" font-size="11" fill="#ccc">dibuja</text>
+                </svg>
+            </div>
+            <p style="text-align: center; font-size: 11px; color: #888; margin-top: 8px;">
+                ✂️ Recorta todo el contorno incluyendo las pestañas | 📐 Dobla por las líneas negras | 🧴 Pega las pestañas por dentro
+            </p>
+        </div>
+        
+        <!-- Fun fact -->
+        <div class="fun-fact">
+            <span class="icon">🎮</span>
+            <div>
+                <strong>¿Sabías que...</strong> los 3 dados son <strong>idénticos</strong>? 
+                Solo necesitas diseñar uno y hacer 3 copias iguales.
+            </div>
+        </div>
+        
+        <p class="footer">¡Yo No Fui! - Un juego cooperativo familiar creado con ❤️</p>
+    </div>
+</body>
+</html>
