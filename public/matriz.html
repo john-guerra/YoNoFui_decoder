@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matriz de Pistas - ¡Yo No Fui!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #E8D5C4;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #5D4E37;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #7D6E5D;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 8px 6px;
+      text-align: center;
+      border: 1px solid #E8D5C4;
+    }
+
+    th {
+      background: #C4956A;
+      color: white;
+      font-weight: bold;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    th.trait-header {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      height: 100px;
+      padding: 8px 4px;
+      font-size: 11px;
+    }
+
+    th .icon {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    td.suspect-name {
+      background: #FFF8F0;
+      font-weight: bold;
+      color: #5D4E37;
+      text-align: left;
+      padding-left: 10px;
+      white-space: nowrap;
+    }
+
+    td.suspect-name img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      vertical-align: middle;
+      margin-right: 8px;
+      border: 2px solid #C4956A;
+    }
+
+    td.has-trait {
+      background: #D4EDDA;
+      color: #155724;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    td.no-trait {
+      background: #FFF8F0;
+      color: #ddd;
+    }
+
+    .legend {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #5D4E37;
+    }
+
+    .legend span {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    .legend .yes {
+      background: #D4EDDA;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    .legend .no {
+      background: #FFF8F0;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid #E8D5C4;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #C4956A;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        padding: 10px;
+      }
+
+      h1, .subtitle, .back-link {
+        display: none;
+      }
+
+      table {
+        box-shadow: none;
+        font-size: 10px;
+      }
+
+      th, td {
+        padding: 4px 3px;
+      }
+
+      th.trait-header {
+        height: 80px;
+        font-size: 9px;
+      }
+
+      td.suspect-name img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Matriz de Pistas</h1>
+  <p class="subtitle">Referencia: qué características tiene cada sospechoso</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Sospechoso</th>
+          <th class="trait-header"><span class="icon">👓</span>Gafas</th>
+          <th class="trait-header"><span class="icon">😢</span>Llorón</th>
+          <th class="trait-header"><span class="icon">👱</span>Pelo lacio</th>
+          <th class="trait-header"><span class="icon">🏋️</span>Ejercicio</th>
+          <th class="trait-header"><span class="icon">👨</span>Hombre</th>
+          <th class="trait-header"><span class="icon">🧑</span>Adulto</th>
+          <th class="trait-header"><span class="icon">🎮</span>Videojuegos</th>
+          <th class="trait-header"><span class="icon">⛪</span>Religioso</th>
+          <th class="trait-header"><span class="icon">👗</span>Fashionista</th>
+          <th class="trait-header"><span class="icon">👨‍🦲</span>Calvo</th>
+          <th class="trait-header"><span class="icon">☕</span>Café</th>
+          <th class="trait-header"><span class="icon">🌶️</span>Picante</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Vicente -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Vicente.jpg" alt="">Vicente</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Edwin -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Edwin.png" alt="">Edwin</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+        </tr>
+        <!-- Jambita -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Jambita.png" alt="">Jambita</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+        </tr>
+        <!-- Eli -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Eli.jpg" alt="">Eli</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Magda -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Magda.png" alt="">Magda</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+        </tr>
+        <!-- Aide -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Aide.png" alt="">Aide</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+        </tr>
+        <!-- Yuli -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Yuli.png" alt="">Yuli</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Johan -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Johan.jpg" alt="">Johan</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Mafe -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Mafe.png" alt="">Mafe</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+        </tr>
+        <!-- Santi -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Santi.jpg" alt="">Santi</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Goyo -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Goyo.png" alt="">Goyo</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Luchi -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Luchi.jpg" alt="">Luchi</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Juanchito -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Juanchito.jpg" alt="">Juanchito</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+        <!-- Miguelito -->
+        <tr>
+          <td class="suspect-name"><img src="imgs/Miguelito.jpg" alt="">Miguelito</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="has-trait">✓</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+          <td class="no-trait">·</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="legend">
+    <span class="yes">✓ = Tiene la característica</span>
+    <span class="no">· = No la tiene</span>
+  </div>
+
+  <a href="index.html" class="back-link">← Volver al juego</a>
+</body>
+</html>

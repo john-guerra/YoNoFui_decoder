@@ -189,6 +189,17 @@ const MenuScreen = ({ onStartGame }) => {
           >
             🃏 Cartas
           </a>
+          <a
+            href="matriz.html"
+            className="px-5 py-3 rounded-xl text-sm font-bold shadow-lg hover:scale-105 transition-all flex items-center gap-2"
+            style={{
+              backgroundColor: '#10B981',
+              color: 'white',
+              boxShadow: '0 4px 0 #059669',
+            }}
+          >
+            📊 Matriz
+          </a>
         </div>
       </div>
     </div>
