@@ -499,27 +499,42 @@ export default function YoNoFuiDecoder() {
   return (
     <div
       className="min-h-screen flex flex-col relative"
-      style={{ backgroundColor: '#E8D5C4' }}
+      style={{
+        backgroundImage: `url(${IMAGE_BASE_URL}board_with_dog.png)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       {/* Detective pets roaming */}
       <DetectivePets />
 
-      {/* Header */}
-      <header 
-        className="sticky top-0 z-40 p-4 shadow-md"
-        style={{ backgroundColor: '#C4956A' }}
+      {/* Header with Nes and the daño */}
+      <header
+        className="sticky top-0 z-40 p-3 shadow-md"
+        style={{ backgroundColor: 'rgba(196, 149, 106, 0.95)' }}
       >
-        <h1 className="text-xl font-bold text-white text-center">
-          ¡Yo No Fui! - Decodificador
-        </h1>
+        <div className="flex items-center gap-3 max-w-lg mx-auto">
+          <img
+            src={`${IMAGE_BASE_URL}Nes.png`}
+            alt="Nes"
+            className="w-12 h-12 rounded-full object-cover shadow-md flex-shrink-0"
+            style={{ border: '2px solid white' }}
+          />
+          {currentDano && (
+            <p className="text-white text-sm font-medium leading-tight">
+              "¿Quién me {currentDano.verbo} {currentDano.objeto} de {currentDano.lugar}?"
+            </p>
+          )}
+        </div>
       </header>
 
       {/* Main content - scrollable */}
       <main className="flex-1 overflow-y-auto p-4 pb-32 flex flex-col items-center justify-center">
         {/* Revealed Clues */}
         <div
-          className="rounded-xl p-6 shadow-md w-full max-w-md"
-          style={{ backgroundColor: '#FFF8F0' }}
+          className="rounded-xl p-6 shadow-lg w-full max-w-md"
+          style={{ backgroundColor: 'rgba(255, 248, 240, 0.95)' }}
         >
           <h2 className="font-bold mb-4 text-center text-lg" style={{ color: '#5D4E37' }}>
             Pistas Reveladas ({revealedClues.length}/12)
