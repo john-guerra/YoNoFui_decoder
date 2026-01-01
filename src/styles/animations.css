@@ -32,3 +32,40 @@
   0% { transform: translateY(0) rotate(-5deg); }
   100% { transform: translateY(-5px) rotate(5deg); }
 }
+
+/* Landing page floating suspects */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(5px) rotate(-2deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(-5px) rotate(-2deg); }
+  50% { transform: translateY(-20px) rotate(4deg); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  50% { transform: translateY(-12px) rotate(-3deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 150, 100, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(255, 150, 100, 0.8); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
