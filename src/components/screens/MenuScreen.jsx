@@ -66,6 +66,13 @@ const MenuScreen = ({ onStartGame }) => {
         >
           🎲 Crea tus Dados
         </a>
+        <a
+          href="cartas.html"
+          className="px-4 py-2 rounded-full text-sm font-medium shadow-md hover:shadow-lg transition-all"
+          style={{ backgroundColor: '#8B5CF6', color: 'white' }}
+        >
+          🃏 Imprimir Cartas
+        </a>
       </div>
     </div>
   );

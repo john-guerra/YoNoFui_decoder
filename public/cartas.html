@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartas de Sospechosos - ¡Yo No Fui!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #E8D5C4;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #5D4E37;
+      margin-bottom: 20px;
+    }
+
+    .print-instructions {
+      text-align: center;
+      color: #7D6E5D;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border: 2px solid #C4956A;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 280px;
+    }
+
+    .card-image-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 0;
+    }
+
+    .card img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .traits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2px;
+      margin-top: auto;
+      padding-top: 8px;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      color: #C4956A;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      h1, .print-instructions, .back-link {
+        display: none;
+      }
+
+      .cards-grid {
+        gap: 10px;
+        max-width: 100%;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #999;
+        page-break-inside: avoid;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Cartas de Sospechosos</h1>
+  <p class="print-instructions">Imprime esta página y recorta las cartas para jugar</p>
+
+  <div class="cards-grid">
+    <!-- Vicente -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Vicente.jpg" alt="Vicente">
+      </div>
+      <div class="traits">👓😢👨🧑⛪👨‍🦲☕</div>
+    </div>
+
+    <!-- Edwin -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Edwin.png" alt="Edwin">
+      </div>
+      <div class="traits">😢🏋️👨🧑⛪👨‍🦲☕🌶️</div>
+    </div>
+
+    <!-- Jambita -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Jambita.png" alt="Jambita">
+      </div>
+      <div class="traits">👓😢🏋️👨🧑🎮👨‍🦲☕🌶️</div>
+    </div>
+
+    <!-- Eli -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Eli.jpg" alt="Eli">
+      </div>
+      <div class="traits">👓😢🏋️🧑⛪👗</div>
+    </div>
+
+    <!-- Magda -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Magda.png" alt="Magda">
+      </div>
+      <div class="traits">🧑⛪👗☕🌶️</div>
+    </div>
+
+    <!-- Aide -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Aide.png" alt="Aide">
+      </div>
+      <div class="traits">👱🧑⛪👗☕🌶️</div>
+    </div>
+
+    <!-- Yuli -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Yuli.png" alt="Yuli">
+      </div>
+      <div class="traits">👱🧑</div>
+    </div>
+
+    <!-- Johan -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Johan.jpg" alt="Johan">
+      </div>
+      <div class="traits">👓👨🧑🎮⛪👨‍🦲</div>
+    </div>
+
+    <!-- Mafe -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Mafe.png" alt="Mafe">
+      </div>
+      <div class="traits">🏋️🧑🌶️</div>
+    </div>
+
+    <!-- Santi -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Santi.jpg" alt="Santi">
+      </div>
+      <div class="traits">😢👱🏋️👨🎮</div>
+    </div>
+
+    <!-- Goyo -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Goyo.png" alt="Goyo">
+      </div>
+      <div class="traits">👱🏋️👨🎮</div>
+    </div>
+
+    <!-- Luchi -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Luchi.jpg" alt="Luchi">
+      </div>
+      <div class="traits">👱🎮👗</div>
+    </div>
+
+    <!-- Juanchito -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Juanchito.jpg" alt="Juanchito">
+      </div>
+      <div class="traits">👨🎮⛪</div>
+    </div>
+
+    <!-- Miguelito -->
+    <div class="card">
+      <div class="card-image-wrapper">
+        <img src="imgs/Miguelito.jpg" alt="Miguelito">
+      </div>
+      <div class="traits">😢👨🎮</div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-link">← Volver al juego</a>
+</body>
+</html>
