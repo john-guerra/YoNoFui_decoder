@@ -1,0 +1,34 @@
+/* Detective pets roaming animations */
+@keyframes roamDog {
+  0% { transform: translateX(-50px); }
+  25% { transform: translateX(calc(100vw - 100px)) translateY(30px); }
+  50% { transform: translateX(calc(50vw)) translateY(-20px); }
+  75% { transform: translateX(calc(80vw - 80px)) translateY(50px); }
+  100% { transform: translateX(-50px); }
+}
+
+@keyframes roamCat {
+  0% { transform: translateX(50px) scaleX(-1); }
+  33% { transform: translateX(calc(-100vw + 100px)) translateY(-40px) scaleX(-1); }
+  66% { transform: translateX(calc(-50vw)) translateY(30px) scaleX(-1); }
+  100% { transform: translateX(50px) scaleX(-1); }
+}
+
+@keyframes roamBird {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-40vw, -20vh); }
+  40% { transform: translate(30vw, 10vh); }
+  60% { transform: translate(-20vw, 20vh); }
+  80% { transform: translate(40vw, -10vh); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes flutter {
+  0% { transform: translateY(0) rotate(-5deg); }
+  100% { transform: translateY(-5px) rotate(5deg); }
+}
