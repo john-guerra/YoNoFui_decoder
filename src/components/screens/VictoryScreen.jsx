@@ -3,7 +3,7 @@ import { SUSPECTS } from '../../data/suspects';
 
 const IMAGE_BASE_URL = `${import.meta.env.BASE_URL}imgs/`;
 
-const VictoryScreen = ({ culprit, onPlayAgain }) => {
+const VictoryScreen = ({ culprit, onPlayAgain, onGoToMenu }) => {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center p-6"
@@ -24,13 +24,22 @@ const VictoryScreen = ({ culprit, onPlayAgain }) => {
       <p className="text-lg mb-8" style={{ color: '#7D6E5D' }}>
         Nes estaría orgullosa 💕
       </p>
-      <button
-        onClick={onPlayAgain}
-        className="px-8 py-4 rounded-full text-lg font-bold text-white shadow-lg"
-        style={{ backgroundColor: '#C4956A' }}
-      >
-        Jugar de Nuevo
-      </button>
+      <div className="flex flex-col gap-3">
+        <button
+          onClick={onPlayAgain}
+          className="px-8 py-4 rounded-full text-lg font-bold text-white shadow-lg"
+          style={{ backgroundColor: '#C4956A' }}
+        >
+          Jugar de Nuevo
+        </button>
+        <button
+          onClick={onGoToMenu}
+          className="px-8 py-3 rounded-full text-sm font-medium"
+          style={{ backgroundColor: '#E8D5C4', color: '#5D4E37', border: '2px solid #C4956A' }}
+        >
+          Volver al Menú
+        </button>
+      </div>
     </div>
   );
 };

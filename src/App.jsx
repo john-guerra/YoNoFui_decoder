@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './styles/animations.css';
 
 // Data imports
@@ -13,13 +13,69 @@ import PlayingScreen from './components/screens/PlayingScreen';
 import VictoryScreen from './components/screens/VictoryScreen';
 import DefeatScreen from './components/screens/DefeatScreen';
 
+const STORAGE_KEY = 'yonofui_game_state';
+
+// Load saved game from localStorage
+const loadSavedGame = () => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // Validate that the saved culprit still exists
+      if (parsed.culprit && SUSPECTS[parsed.culprit]) {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.error('Error loading saved game:', e);
+  }
+  return null;
+};
+
+// Save game to localStorage
+const saveGame = (state) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    console.error('Error saving game:', e);
+  }
+};
+
+// Clear saved game from localStorage
+const clearSavedGame = () => {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (e) {
+    console.error('Error clearing saved game:', e);
+  }
+};
+
 export default function YoNoFuiDecoder() {
-  const [gameState, setGameState] = useState('menu'); // menu, intro, playing, victory, defeat
-  const [culprit, setCulprit] = useState(null);
-  const [revealedClues, setRevealedClues] = useState([]);
+  // Try to load saved game on initial render
+  const savedGame = loadSavedGame();
+
+  const [gameState, setGameState] = useState(savedGame?.gameState || 'menu');
+  const [culprit, setCulprit] = useState(savedGame?.culprit || null);
+  const [revealedClues, setRevealedClues] = useState(savedGame?.revealedClues || []);
   const [currentClue, setCurrentClue] = useState(null);
-  const [currentDano, setCurrentDano] = useState(null);
-  const [introStep, setIntroStep] = useState(0); // 0: Nes asks, 1: Everyone responds, 2: Padre Mejía
+  const [currentDano, setCurrentDano] = useState(savedGame?.currentDano || null);
+  const [introStep, setIntroStep] = useState(savedGame?.introStep || 0);
+
+  // Save game state whenever it changes (only during active game)
+  useEffect(() => {
+    if (gameState === 'playing' || gameState === 'intro') {
+      saveGame({
+        gameState,
+        culprit,
+        revealedClues,
+        currentDano,
+        introStep,
+      });
+    } else if (gameState === 'menu') {
+      // Clear saved game when returning to menu
+      clearSavedGame();
+    }
+  }, [gameState, culprit, revealedClues, currentDano, introStep]);
 
   // Start new game
   const startGame = useCallback(() => {
@@ -32,6 +88,22 @@ export default function YoNoFuiDecoder() {
     setIntroStep(0);
     setGameState('intro');
   }, []);
+
+  // Go back to menu (clears game)
+  const goToMenu = useCallback(() => {
+    clearSavedGame();
+    setCulprit(null);
+    setRevealedClues([]);
+    setCurrentClue(null);
+    setCurrentDano(null);
+    setIntroStep(0);
+    setGameState('menu');
+  }, []);
+
+  // End game early (with confirmation handled by PlayingScreen)
+  const endGame = useCallback(() => {
+    goToMenu();
+  }, [goToMenu]);
 
   // Advance intro sequence
   const advanceIntro = useCallback(() => {
@@ -58,6 +130,7 @@ export default function YoNoFuiDecoder() {
 
   // Make accusation
   const accuse = useCallback((suspectKey) => {
+    clearSavedGame(); // Clear saved game on victory/defeat
     if (suspectKey === culprit) {
       setGameState('victory');
     } else {
@@ -80,10 +153,10 @@ export default function YoNoFuiDecoder() {
       ) : null;
 
     case 'victory':
-      return <VictoryScreen culprit={culprit} onPlayAgain={startGame} />;
+      return <VictoryScreen culprit={culprit} onPlayAgain={startGame} onGoToMenu={goToMenu} />;
 
     case 'defeat':
-      return <DefeatScreen culprit={culprit} onPlayAgain={startGame} />;
+      return <DefeatScreen culprit={culprit} onPlayAgain={startGame} onGoToMenu={goToMenu} />;
 
     case 'playing':
     default:
@@ -96,6 +169,7 @@ export default function YoNoFuiDecoder() {
           onRevealClue={revealClue}
           onCloseClue={() => setCurrentClue(null)}
           onAccuse={accuse}
+          onEndGame={endGame}
         />
       );
   }

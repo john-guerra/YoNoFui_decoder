@@ -16,22 +16,26 @@ const PlayingScreen = ({
   onRevealClue,
   onCloseClue,
   onAccuse,
+  onEndGame,
 }) => {
   const [showAccusation, setShowAccusation] = useState(false);
   const [showDiceRoller, setShowDiceRoller] = useState(false);
+  const [showEndGameConfirm, setShowEndGameConfirm] = useState(false);
   const [lastDiceResult, setLastDiceResult] = useState(null);
 
   const handleDiceSuccess = (type, paws) => {
     setLastDiceResult({ type, paws, success: true });
     setShowDiceRoller(false);
-    // If paws, the player can move on the physical board
-    // If eyes, they can reveal suspects on the physical board
   };
 
   const handleDiceFail = () => {
     setLastDiceResult({ success: false });
     setShowDiceRoller(false);
-    // Padre Mejía advances on the physical board
+  };
+
+  const handleEndGameConfirm = () => {
+    setShowEndGameConfirm(false);
+    onEndGame();
   };
 
   return (
@@ -60,10 +64,18 @@ const PlayingScreen = ({
             style={{ border: '2px solid white' }}
           />
           {currentDano && (
-            <p className="text-white text-sm font-medium leading-tight">
+            <p className="text-white text-sm font-medium leading-tight flex-1">
               "¿Quién me {currentDano.verbo} {currentDano.objeto} de {currentDano.lugar}?"
             </p>
           )}
+          {/* End Game Button */}
+          <button
+            onClick={() => setShowEndGameConfirm(true)}
+            className="px-3 py-1 rounded-lg text-xs font-medium shadow-sm flex-shrink-0"
+            style={{ backgroundColor: 'rgba(0,0,0,0.3)', color: 'white' }}
+          >
+            Salir
+          </button>
         </div>
       </header>
 
@@ -176,6 +188,40 @@ const PlayingScreen = ({
           onSuccess={handleDiceSuccess}
           onFail={handleDiceFail}
         />
+      )}
+
+      {/* End Game Confirmation Modal */}
+      {showEndGameConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+          <div
+            className="rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl"
+            style={{ backgroundColor: '#FFF8F0' }}
+          >
+            <div className="text-5xl mb-4">⚠️</div>
+            <h3 className="text-xl font-bold mb-3" style={{ color: '#5D4E37' }}>
+              ¿Terminar partida?
+            </h3>
+            <p className="text-sm mb-6" style={{ color: '#7D6E5D' }}>
+              Se perderá todo el progreso de esta partida y volverás al menú principal.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowEndGameConfirm(false)}
+                className="flex-1 py-3 rounded-xl font-bold text-sm"
+                style={{ backgroundColor: '#E8D5C4', color: '#5D4E37' }}
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleEndGameConfirm}
+                className="flex-1 py-3 rounded-xl font-bold text-white text-sm"
+                style={{ backgroundColor: '#D64545' }}
+              >
+                Sí, terminar
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
